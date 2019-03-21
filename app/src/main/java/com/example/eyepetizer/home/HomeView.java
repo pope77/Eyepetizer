@@ -5,4 +5,7 @@ package com.example.eyepetizer.home;
  * @author popeg
  */
 public interface HomeView {
+
+    void loadData(String data);
+
 }

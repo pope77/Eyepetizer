@@ -5,4 +5,15 @@ package com.example.eyepetizer.home;
  * @author popeg
  */
 public interface HomeInteractor {
+
+    interface OnDataCallback{
+
+        void onGetSuccess(String data);
+
+        void onGetFailes(String errorMsg);
+
+    }
+
+    void getData(OnDataCallback onDataCallback);
+
 }

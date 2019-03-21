@@ -10,6 +10,8 @@ public interface HomePresenter {
      * 绑定View层
      * @param view 被绑定视图层视图
      */
-    void bindView(HomeFragment view);
+    void bindView(HomeView view);
+
+    void getData();
 
 }
