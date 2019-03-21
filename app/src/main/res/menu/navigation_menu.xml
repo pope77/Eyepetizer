@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navi_home"
+        android:icon="@mipmap/ic_home"
+        android:title="@string/navi_home" />
+
+    <item
+        android:id="@+id/navi_community"
+        android:icon="@mipmap/ic_community"
+        android:title="@string/navi_commmunity"/>
+
+    <item
+        android:id="@+id/navi_new"
+        android:icon="@mipmap/ic_new"
+        android:title="" />
+
+    <item
+        android:id="@+id/navi_notice"
+        android:icon="@mipmap/ic_notice"
+        android:title="@string/navi_notice"/>
+
+    <item
+        android:id="@+id/navi_my"
+        android:icon="@mipmap/ic_my"
+        android:title="@string/navi_my"/>
+
+
+</menu>
