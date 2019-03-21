@@ -7,24 +7,14 @@
         android:title="@string/navi_home" />
 
     <item
-        android:id="@+id/navi_community"
+        android:id="@+id/navi_discover"
         android:icon="@mipmap/ic_community"
-        android:title="@string/navi_commmunity"/>
+        android:title="@string/navi_discover"/>
 
     <item
-        android:id="@+id/navi_new"
-        android:icon="@mipmap/ic_new"
-        android:title="" />
-
-    <item
-        android:id="@+id/navi_notice"
+        android:id="@+id/navi_follow"
         android:icon="@mipmap/ic_notice"
-        android:title="@string/navi_notice"/>
-
-    <item
-        android:id="@+id/navi_my"
-        android:icon="@mipmap/ic_my"
-        android:title="@string/navi_my"/>
+        android:title="@string/navi_follow"/>
 
 
 </menu>

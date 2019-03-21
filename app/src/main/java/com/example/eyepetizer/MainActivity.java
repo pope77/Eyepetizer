@@ -8,10 +8,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.example.eyepetizer.community.CommunityFragment;
+import com.example.eyepetizer.discover.DiscoverFragment;
 import com.example.eyepetizer.home.HomeFragment;
-import com.example.eyepetizer.my.MyFragment;
-import com.example.eyepetizer.notice.NoticeFragment;
+import com.example.eyepetizer.follow.FollowFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * @author popeg
  */
-public class HomeActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.bottomNavigationView_home)
     BottomNavigationView bottomNavigationViewHome;
@@ -62,9 +61,6 @@ public class HomeActivity extends AppCompatActivity {
                 } else {
                     bottomNavigationViewHome.getMenu().getItem(0).setChecked(false);
                 }
-                if (position > 1) {
-                    position++;
-                }
                 menuItem = bottomNavigationViewHome.getMenu().getItem(position);
                 menuItem.setChecked(true);
             }
@@ -85,23 +81,17 @@ public class HomeActivity extends AppCompatActivity {
                         viewPagerHome.setCurrentItem(0);
                         menuItem.setIcon(R.mipmap.ic_home_selected);
                         break;
-                    case R.id.navi_community:
+                    case R.id.navi_discover:
                         resetNaviIcon(resetPos);
                         resetPos = 1;
                         viewPagerHome.setCurrentItem(1);
                         menuItem.setIcon(R.mipmap.ic_community_selected);
                         break;
-                    case R.id.navi_notice:
+                    case R.id.navi_follow:
                         resetNaviIcon(resetPos);
                         resetPos = 2;
                         viewPagerHome.setCurrentItem(2);
                         menuItem.setIcon(R.mipmap.ic_notice_selected);
-                        break;
-                    case R.id.navi_my:
-                        resetNaviIcon(resetPos);
-                        resetPos = 3;
-                        viewPagerHome.setCurrentItem(3);
-                        menuItem.setIcon(R.mipmap.ic_my_selected);
                         break;
                     default:
                         break;
@@ -114,12 +104,11 @@ public class HomeActivity extends AppCompatActivity {
         //准备fragment
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
-        fragments.add(new CommunityFragment());
-        fragments.add(new NoticeFragment());
-        fragments.add(new MyFragment());
+        fragments.add(new DiscoverFragment());
+        fragments.add(new FollowFragment());
 
         //适配器
-        HomeAdapter adapter = new HomeAdapter(getSupportFragmentManager(), fragments);
+        MainAdapter adapter = new MainAdapter(getSupportFragmentManager(), fragments);
         viewPagerHome.setAdapter(adapter);
 
     }
@@ -135,16 +124,12 @@ public class HomeActivity extends AppCompatActivity {
                 home.setIcon(R.mipmap.ic_home);
                 break;
             case 1:
-                MenuItem community = bottomNavigationViewHome.getMenu().findItem(R.id.navi_community);
+                MenuItem community = bottomNavigationViewHome.getMenu().findItem(R.id.navi_discover);
                 community.setIcon(R.mipmap.ic_community);
                 break;
             case 2:
-                MenuItem notice = bottomNavigationViewHome.getMenu().findItem(R.id.navi_notice);
+                MenuItem notice = bottomNavigationViewHome.getMenu().findItem(R.id.navi_follow);
                 notice.setIcon(R.mipmap.ic_notice);
-                break;
-            case 3:
-                MenuItem my = bottomNavigationViewHome.getMenu().findItem(R.id.navi_my);
-                my.setIcon(R.mipmap.ic_my);
                 break;
             default:
                 break;

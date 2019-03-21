@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 
 import com.example.eyepetizer.R;
 
+import butterknife.ButterKnife;
+
 /**
  * V层
  * @author popeg
@@ -26,7 +28,7 @@ public class HomeFragment extends Fragment implements HomeView {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-//        ButterKnife.bind(view);
+        ButterKnife.bind(view);
         return view;
     }
 

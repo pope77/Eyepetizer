@@ -11,11 +11,11 @@ import java.util.List;
  * 主页三个fragment的适配器
  * @author popeg
  */
-public class HomeAdapter extends FragmentPagerAdapter {
+public class MainAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> fragments;
 
-    HomeAdapter(FragmentManager fm, List<Fragment> fragments) {
+    MainAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
         this.fragments = fragments;
     }
