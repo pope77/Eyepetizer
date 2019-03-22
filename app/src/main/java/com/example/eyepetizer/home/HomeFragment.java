@@ -42,10 +42,6 @@ public class HomeFragment extends Fragment implements HomeView {
 
     @Inject
     HomePresenter presenter;
-    @BindView(R.id.recyclerView_home)
-    RecyclerView recyclerViewHome;
-    @BindView(R.id.textView2)
-    TextView textView2;
     Unbinder unbinder;
 
     public HomeFragment() {
@@ -93,7 +89,7 @@ public class HomeFragment extends Fragment implements HomeView {
 
     @Override
     public void loadData(String data) {
-        textView2.setText(data);
+
     }
 
     @Override

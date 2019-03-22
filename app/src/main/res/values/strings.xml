@@ -7,4 +7,5 @@
     <string name="navi_my">我的</string>
     <string name="navi_discover">发现</string>
     <string name="navi_follow">关注</string>
+    <string name="welcome">你好，\n欢迎使用Eyepetizer</string>
 </resources>
