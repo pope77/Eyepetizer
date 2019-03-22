@@ -3,6 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorBlack_trans20">#20000000</color>
 
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">10dp</dimen>
     <dimen name="design_bottom_navigation_text_size" tools:override="true">10dp</dimen>
