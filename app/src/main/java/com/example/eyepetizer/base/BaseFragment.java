@@ -15,7 +15,7 @@ public class BaseFragment extends Fragment {
      * @param msg toast显示信息
      * @param isShowLongTime 是否显示长时
      */
-    void tst(String msg, boolean isShowLongTime) {
+    public void tst(String msg, boolean isShowLongTime) {
         if (isShowLongTime) {
             Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
         }else{

@@ -4,21 +4,26 @@ package com.example.eyepetizer.home;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.eyepetizer.BaseApplication;
 import com.example.eyepetizer.R;
-import com.example.eyepetizer.database.JsonRootBean;
-import com.example.eyepetizer.database.TabInfo;
-import com.example.eyepetizer.database.TabList;
-import com.example.eyepetizer.network.EyepetizerApiService;
-import com.example.eyepetizer.system.Global;
+import com.example.eyepetizer.base.BaseFragment;
+import com.example.eyepetizer.database.Banner;
+import com.example.eyepetizer.home.adapter.BannerAdapter;
+import com.example.eyepetizer.utils.ScreenUtil;
+import com.stx.xhb.xbanner.XBanner;
+import com.stx.xhb.xbanner.transformers.Transformer;
 
 import java.util.List;
 
@@ -27,22 +32,27 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * V层
  *
  * @author popeg
  */
-public class HomeFragment extends Fragment implements HomeView {
+public class HomeFragment extends BaseFragment implements HomeView {
 
     @Inject
     HomePresenter presenter;
     Unbinder unbinder;
+    @BindView(R.id.XBanner_home)
+    XBanner xBanner;
+    @BindView(R.id.textView_hotSort)
+    TextView textViewHotSort;
+    @BindView(R.id.textView_welcome)
+    TextView textViewWelcome;
+    @BindView(R.id.recyclerView_hotSort)
+    RecyclerView recyclerViewHotSort;
+    @BindView(R.id.scrollView_home)
+    ScrollView scrollViewHome;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -54,42 +64,33 @@ public class HomeFragment extends Fragment implements HomeView {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        unbinder = ButterKnife.bind(this,view);
+        unbinder = ButterKnife.bind(this, view);
+        ((BaseApplication) getActivity().getApplication()).createHomeComponent().inject(this);
+        presenter.bindView(this);
+        presenter.getBannerData();
         return view;
     }
 
+
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        ((BaseApplication) getActivity().getApplication()).createHomeComponent().inject(this);
-        presenter.bindView(this);
-        presenter.getData();
-        retrofitTest();
-    }
-
-    private void retrofitTest() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Global.API_BASE)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        EyepetizerApiService service = retrofit.create(EyepetizerApiService.class);
-        Call<JsonRootBean> call = service.getTabInfo();
-        call.enqueue(new Callback<JsonRootBean>() {
+    public void loadBannerData(List<Banner> banners) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                ScreenUtil.getScreenWidth(getActivity()) / 2);
+        xBanner.setLayoutParams(layoutParams);
+        xBanner.setPageTransformer(Transformer.Default);
+        xBanner.setData(banners,null);
+        xBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
-            public void onResponse(Call<JsonRootBean> call, Response<JsonRootBean> response) {
-                response.body();
-            }
-
-            @Override
-            public void onFailure(Call<JsonRootBean> call, Throwable t) {
-
+            public void onItemClick(XBanner banner, Object model, View view, int position) {
+                tst("点击了第" + position+1 + "个话题", false);
             }
         });
-    }
-
-    @Override
-    public void loadData(String data) {
-
+        xBanner.loadImage(new XBanner.XBannerAdapter() {
+            @Override
+            public void loadBanner(XBanner banner, Object model, View view, int position) {
+                Glide.with(getActivity()).load(((Banner)model).getUrl()).into((ImageView) view);
+            }
+        });
     }
 
     @Override

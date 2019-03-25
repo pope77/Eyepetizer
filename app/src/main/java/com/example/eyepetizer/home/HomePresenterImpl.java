@@ -1,5 +1,9 @@
 package com.example.eyepetizer.home;
 
+import com.example.eyepetizer.database.Banner;
+
+import java.util.List;
+
 /**
  * P层
  * @author popeg
@@ -19,16 +23,18 @@ public class HomePresenterImpl implements HomePresenter {
     }
 
     @Override
-    public void getData() {
-        interactor.getData(new HomeInteractor.OnDataCallback() {
+    public void getBannerData() {
+        interactor.getBannerData(new HomeInteractor.OnBannerDataCallback() {
             @Override
-            public void onGetSuccess(String data) {
-                view.loadData(data);
+            public void onGetFailed(String msg) {
+                view.tst(msg,false);
             }
 
             @Override
-            public void onGetFailes(String errorMsg) {
+            public void onGetSuccess(List<Banner> banners) {
+                view.loadBannerData(banners);
             }
+
         });
     }
 }

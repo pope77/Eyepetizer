@@ -1,6 +1,7 @@
 package com.example.eyepetizer;
 
 import android.app.Application;
+import android.widget.Toast;
 
 import com.example.eyepetizer.home.HomeComponent;
 import com.example.eyepetizer.home.HomeModule;
@@ -36,6 +37,10 @@ public class BaseApplication extends Application {
 
     public HomeComponent getHomeComponent(){
         return homeComponent;
+    }
+
+    public void error(int errorCode,String msg){
+        Toast.makeText(this,"error"+errorCode,Toast.LENGTH_SHORT).show();
     }
 
 }

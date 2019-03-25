@@ -12,6 +12,9 @@ public interface HomePresenter {
      */
     void bindView(HomeView view);
 
-    void getData();
+    /**
+     * 获取Banner数据
+     */
+    void getBannerData();
 
 }

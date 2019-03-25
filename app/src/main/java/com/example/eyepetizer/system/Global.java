@@ -5,18 +5,8 @@ package com.example.eyepetizer.system;
  */
 public class Global {
 
-    public static final String API_BASE = "http://baobab.kaiyanapp.com/api/v4/";
+    public static final String API_BASE = "http://10.10.10.11:7300/mock/5c94b4cf4641760f22d2ce42/kaiyanapp/";
 
-    public static final String API_HOME = "tabs/selected/";
-
-    public static final String API_DISCOVER = "discovery";
-
-    public static final String API_FOLLOW = "tabs/follow/";
-
-    public static final String API_HOT = "discovery/hot";
-
-    public static final String API_CATEGORY = "discovery/category";
-
-    public static final String API_AUTHOR = "pgcs/all";
+    public static final String API_BANNER = "banner";
 
 }

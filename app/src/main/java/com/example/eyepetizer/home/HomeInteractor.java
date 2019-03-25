@@ -1,19 +1,30 @@
 package com.example.eyepetizer.home;
 
+import com.example.eyepetizer.base.BaseDataCallback;
+import com.example.eyepetizer.database.Banner;
+
+import java.util.List;
+
 /**
  * M层接口
  * @author popeg
  */
 public interface HomeInteractor {
 
-    interface OnDataCallback{
+    interface OnBannerDataCallback extends BaseDataCallback {
 
-        void onGetSuccess(String data);
-
-        void onGetFailes(String errorMsg);
+        /**
+         * 获取Banner数据回调接口
+         * @param data 回调数据
+         */
+        void onGetSuccess(List<Banner> data);
 
     }
 
-    void getData(OnDataCallback onDataCallback);
+    /**
+     * 获取Banner展示数据
+     * @param onBannerDataCallback 数据回调
+     */
+    void getBannerData(OnBannerDataCallback onBannerDataCallback);
 
 }
