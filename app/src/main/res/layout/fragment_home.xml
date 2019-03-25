@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".discover.DiscoverFragment" >
+    tools:context=".discover.DiscoverFragment">
 
     <ScrollView
         android:id="@+id/scrollView_home"
@@ -21,20 +21,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="24dp"
                 android:text="@string/welcome"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <com.stx.xhb.xbanner.XBanner
                 android:id="@+id/XBanner_home"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                app:isAutoPlay="true"
                 app:AutoPlayTime="3000"
+                app:isAutoPlay="true"
                 app:isClipChildrenMode="true"
                 app:isHandLoop="true"
                 app:isShowNumberIndicator="false"
@@ -44,9 +44,30 @@
                 app:pointsVisibility="false"
                 tools:layout_editor_absoluteY="109dp" />
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:paddingLeft="16dp"
+                android:layout_marginTop="4dp"
+                android:paddingRight="16dp"
+                android:src="@color/colorBlack_trans20" />
+
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView_hotSort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:text="热门分类"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -62,27 +83,39 @@
                     app:layout_constraintTop_toTopOf="@+id/textView_hotSort"
                     app:layout_constraintVertical_bias="1.0" />
 
-                <TextView
-                    android:id="@+id/textView_hotSort"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:text="热门分类"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerView_hotSort"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="288dp"
                     android:layout_marginTop="16dp"
+                    android:clipToPadding="false"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_hotSort" />
+
             </android.support.constraint.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:src="@color/colorBlack_trans20"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"
+                android:text="— The end —"
+                android:textColor="@android:color/black" />
+
         </LinearLayout>
     </ScrollView>
 

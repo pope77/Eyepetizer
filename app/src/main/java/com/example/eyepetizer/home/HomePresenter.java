@@ -17,4 +17,8 @@ public interface HomePresenter {
      */
     void getBannerData();
 
+    /**
+     * 获取分类列表数据
+     */
+    void getTypeData();
 }

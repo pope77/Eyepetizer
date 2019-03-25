@@ -1,6 +1,8 @@
 package com.example.eyepetizer.home;
 
 import com.example.eyepetizer.database.Banner;
+import com.example.eyepetizer.database.Type;
+import com.example.eyepetizer.database.TypeRootBean;
 
 import java.util.List;
 
@@ -35,6 +37,21 @@ public class HomePresenterImpl implements HomePresenter {
                 view.loadBannerData(banners);
             }
 
+        });
+    }
+
+    @Override
+    public void getTypeData() {
+        interactor.getTypeList(new HomeInteractor.OnTypeListCallback() {
+            @Override
+            public void onGetSuccess(List<Type> typeList) {
+                view.loadTypeList(typeList);
+            }
+
+            @Override
+            public void onGetFailed(String msg) {
+                view.tst(msg,false);
+            }
         });
     }
 }

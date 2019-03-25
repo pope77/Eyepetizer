@@ -9,4 +9,6 @@ public class Global {
 
     public static final String API_BANNER = "banner";
 
+    public static final String API_TYPE = "type";
+
 }

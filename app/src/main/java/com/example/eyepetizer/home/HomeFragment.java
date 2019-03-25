@@ -2,11 +2,8 @@ package com.example.eyepetizer.home;
 
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +17,13 @@ import com.example.eyepetizer.BaseApplication;
 import com.example.eyepetizer.R;
 import com.example.eyepetizer.base.BaseFragment;
 import com.example.eyepetizer.database.Banner;
-import com.example.eyepetizer.home.adapter.BannerAdapter;
+import com.example.eyepetizer.database.Type;
+import com.example.eyepetizer.home.adapter.TypeListAdapter;
 import com.example.eyepetizer.utils.ScreenUtil;
 import com.stx.xhb.xbanner.XBanner;
 import com.stx.xhb.xbanner.transformers.Transformer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -68,6 +67,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
         ((BaseApplication) getActivity().getApplication()).createHomeComponent().inject(this);
         presenter.bindView(this);
         presenter.getBannerData();
+        presenter.getTypeData();
         return view;
     }
 
@@ -91,6 +91,20 @@ public class HomeFragment extends BaseFragment implements HomeView {
                 Glide.with(getActivity()).load(((Banner)model).getUrl()).into((ImageView) view);
             }
         });
+    }
+
+    @Override
+    public void loadTypeList(List<Type> typeList) {
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.HORIZONTAL);
+        recyclerViewHotSort.setLayoutManager(layoutManager);
+        List<Type> types = new ArrayList<>();
+        if (typeList.size() > 16) {
+            for (int i = 0; i < 16; i++) {
+                types.add(typeList.get(i));
+            }
+        }
+        TypeListAdapter adapter= new TypeListAdapter(types,getActivity());
+        recyclerViewHotSort.setAdapter(adapter);
     }
 
     @Override
