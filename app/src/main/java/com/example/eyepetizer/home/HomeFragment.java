@@ -111,5 +111,6 @@ public class HomeFragment extends BaseFragment implements HomeView {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        presenter.destroy();
     }
 }

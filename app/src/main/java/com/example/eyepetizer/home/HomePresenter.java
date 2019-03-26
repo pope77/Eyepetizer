@@ -21,4 +21,9 @@ public interface HomePresenter {
      * 获取分类列表数据
      */
     void getTypeData();
+
+    /**
+     * 销毁
+     */
+    void destroy();
 }

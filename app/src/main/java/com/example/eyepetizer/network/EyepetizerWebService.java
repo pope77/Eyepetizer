@@ -25,6 +25,6 @@ public interface EyepetizerWebService {
      * @return TypeListInfo
      */
     @GET(Global.API_TYPE)
-    Call<TypeRootBean> getTypeListInfo();
+    Observable<TypeRootBean> getTypeListInfo();
 
 }
