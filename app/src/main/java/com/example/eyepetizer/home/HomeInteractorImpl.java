@@ -9,6 +9,7 @@ import com.example.eyepetizer.utils.LogUtils;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,19 +24,30 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HomeInteractorImpl implements HomeInteractor {
 
     private Throwable error;
-    private OnBannerDataCallback onBannerDataCallback;
+//    private OnBannerDataCallback onBannerDataCallback;
     private OnTypeListCallback onTypeListCallback;
 
-    @Override
-    public void getBannerData(OnBannerDataCallback onBannerDataCallback) {
-        this.onBannerDataCallback = onBannerDataCallback;
-        getBannerBean();
+    private EyepetizerWebService eyepetizerWebService;
+
+    HomeInteractorImpl(EyepetizerWebService eyepetizerWebService){
+        this.eyepetizerWebService = eyepetizerWebService;
     }
+
+//    @Override
+//    public void getBannerData(OnBannerDataCallback onBannerDataCallback) {
+//        this.onBannerDataCallback = onBannerDataCallback;
+//        getBannerBean();
+//    }
 
     @Override
     public void getTypeList(OnTypeListCallback onTypeListCallback) {
         this.onTypeListCallback = onTypeListCallback;
         getTypeListInfo();
+    }
+
+    @Override
+    public Observable<BannerBean> fetchBannerData() {
+        return eyepetizerWebService.getBannerInfo();
     }
 
     /**
@@ -71,33 +83,33 @@ public class HomeInteractorImpl implements HomeInteractor {
     /**
      * 获取首页根数据方法
      */
-    private void getBannerBean() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Global.API_BASE)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        EyepetizerWebService service = retrofit.create(EyepetizerWebService.class);
-        Call<BannerBean> call = service.getBannerInfo();
-        call.enqueue(new Callback<BannerBean>() {
-            @Override
-            public void onResponse(Call<BannerBean> call, Response<BannerBean> response) {
-                List<Banner> banners = response.body().getBanner();
-                error = null;
-                if (onBannerDataCallback != null) {
-                    onBannerDataCallback.onGetSuccess(banners);
-                    onBannerDataCallback = null;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BannerBean> call, Throwable t) {
-                LogUtils.logError(110, "retrofit执行onFailure", t);
-                if (onBannerDataCallback != null) {
-                    onBannerDataCallback.onGetFailed("error110");
-                    onBannerDataCallback = null;
-                }
-            }
-        });
-    }
+//    private void getBannerBean() {
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(Global.API_BASE)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        EyepetizerWebService service = retrofit.create(EyepetizerWebService.class);
+//        Call<BannerBean> call = service.getBannerInfo();
+//        call.enqueue(new Callback<BannerBean>() {
+//            @Override
+//            public void onResponse(Call<BannerBean> call, Response<BannerBean> response) {
+//                List<Banner> banners = response.body().getBanner();
+//                error = null;
+//                if (onBannerDataCallback != null) {
+//                    onBannerDataCallback.onGetSuccess(banners);
+//                    onBannerDataCallback = null;
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<BannerBean> call, Throwable t) {
+//                LogUtils.logError(110, "retrofit执行onFailure", t);
+//                if (onBannerDataCallback != null) {
+//                    onBannerDataCallback.onGetFailed("error110");
+//                    onBannerDataCallback = null;
+//                }
+//            }
+//        });
+//    }
 
 }

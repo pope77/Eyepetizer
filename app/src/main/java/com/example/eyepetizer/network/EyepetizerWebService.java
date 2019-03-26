@@ -4,6 +4,7 @@ import com.example.eyepetizer.database.BannerBean;
 import com.example.eyepetizer.database.TypeRootBean;
 import com.example.eyepetizer.system.Global;
 
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -17,7 +18,7 @@ public interface EyepetizerWebService {
      * @return BannerInfo
      */
     @GET(Global.API_BANNER)
-    Call<BannerBean> getBannerInfo();
+    Observable<BannerBean> getBannerInfo();
 
     /**
      * 获取分类列表数据

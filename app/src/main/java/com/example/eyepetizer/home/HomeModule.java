@@ -1,5 +1,7 @@
 package com.example.eyepetizer.home;
 
+import com.example.eyepetizer.network.EyepetizerWebService;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -10,8 +12,8 @@ import dagger.Provides;
 public class HomeModule {
 
     @Provides
-    HomeInteractor provideHomeInteractor(){
-        return new HomeInteractorImpl();
+    HomeInteractor provideHomeInteractor(EyepetizerWebService eyepetizerWebService){
+        return new HomeInteractorImpl(eyepetizerWebService);
     }
 
     @Provides
