@@ -8,12 +8,12 @@
 
     <item
         android:id="@+id/navi_discover"
-        android:icon="@mipmap/ic_community"
+        android:icon="@mipmap/ic_discovery"
         android:title="@string/navi_discover"/>
 
     <item
         android:id="@+id/navi_follow"
-        android:icon="@mipmap/ic_notice"
+        android:icon="@mipmap/ic_follow"
         android:title="@string/navi_follow"/>
 
 

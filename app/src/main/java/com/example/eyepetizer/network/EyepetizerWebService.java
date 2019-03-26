@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 /**
  * @author popeg
  */
-public interface EyepetizerApiService {
+public interface EyepetizerWebService {
 
     /**
      * 获取Banner数据

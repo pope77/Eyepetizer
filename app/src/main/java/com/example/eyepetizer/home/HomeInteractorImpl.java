@@ -2,9 +2,8 @@ package com.example.eyepetizer.home;
 
 import com.example.eyepetizer.database.Banner;
 import com.example.eyepetizer.database.BannerBean;
-import com.example.eyepetizer.database.Type;
 import com.example.eyepetizer.database.TypeRootBean;
-import com.example.eyepetizer.network.EyepetizerApiService;
+import com.example.eyepetizer.network.EyepetizerWebService;
 import com.example.eyepetizer.system.Global;
 import com.example.eyepetizer.utils.LogUtils;
 
@@ -47,7 +46,7 @@ public class HomeInteractorImpl implements HomeInteractor {
                 .baseUrl(Global.API_BASE)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        EyepetizerApiService service = retrofit.create(EyepetizerApiService.class);
+        EyepetizerWebService service = retrofit.create(EyepetizerWebService.class);
         Call<TypeRootBean> call = service.getTypeListInfo();
         call.enqueue(new Callback<TypeRootBean>() {
             @Override
@@ -77,7 +76,7 @@ public class HomeInteractorImpl implements HomeInteractor {
                 .baseUrl(Global.API_BASE)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        EyepetizerApiService service = retrofit.create(EyepetizerApiService.class);
+        EyepetizerWebService service = retrofit.create(EyepetizerWebService.class);
         Call<BannerBean> call = service.getBannerInfo();
         call.enqueue(new Callback<BannerBean>() {
             @Override

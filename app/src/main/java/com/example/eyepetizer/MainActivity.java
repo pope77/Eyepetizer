@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         viewPagerHome.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
             }
 
             @Override
@@ -63,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 menuItem = bottomNavigationViewHome.getMenu().getItem(position);
                 menuItem.setChecked(true);
+
+                switchNaviIcon(position);
+
             }
 
             @Override
@@ -76,22 +80,13 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.navi_home:
-                        resetNaviIcon(resetPos);
-                        resetPos = 0;
-                        viewPagerHome.setCurrentItem(0);
-                        menuItem.setIcon(R.mipmap.ic_home_selected);
+                        switchNaviIcon(0);
                         break;
                     case R.id.navi_discover:
-                        resetNaviIcon(resetPos);
-                        resetPos = 1;
-                        viewPagerHome.setCurrentItem(1);
-                        menuItem.setIcon(R.mipmap.ic_community_selected);
+                        switchNaviIcon(1);
                         break;
                     case R.id.navi_follow:
-                        resetNaviIcon(resetPos);
-                        resetPos = 2;
-                        viewPagerHome.setCurrentItem(2);
-                        menuItem.setIcon(R.mipmap.ic_notice_selected);
+                        switchNaviIcon(2);
                         break;
                     default:
                         break;
@@ -114,6 +109,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * 切换导航栏Icon
+     * @param pos 位置
+     */
+    private void switchNaviIcon(int pos) {
+
+        switch (pos) {
+            case 0:
+                resetNaviIcon(resetPos);
+                resetPos = 0;
+                bottomNavigationViewHome.getMenu().findItem(R.id.navi_home).setIcon(R.mipmap.ic_home_selected);
+                break;
+            case 1:
+                resetNaviIcon(resetPos);
+                resetPos = 1;
+                bottomNavigationViewHome.getMenu().findItem(R.id.navi_discover).setIcon(R.mipmap.ic_discovery_selected);
+                break;
+            case 2:
+                resetNaviIcon(resetPos);
+                resetPos = 2;
+                bottomNavigationViewHome.getMenu().findItem(R.id.navi_follow).setIcon(R.mipmap.ic_follow_selected);
+                break;
+            default:
+                break;
+        }
+        viewPagerHome.setCurrentItem(pos);
+
+    }
+
+    /**
      * 重置导航栏图标
      */
     private void resetNaviIcon(int resetPos) {
@@ -125,11 +149,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 1:
                 MenuItem community = bottomNavigationViewHome.getMenu().findItem(R.id.navi_discover);
-                community.setIcon(R.mipmap.ic_community);
+                community.setIcon(R.mipmap.ic_discovery);
                 break;
             case 2:
                 MenuItem notice = bottomNavigationViewHome.getMenu().findItem(R.id.navi_follow);
-                notice.setIcon(R.mipmap.ic_notice);
+                notice.setIcon(R.mipmap.ic_follow);
                 break;
             default:
                 break;
